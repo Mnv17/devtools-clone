@@ -16,16 +16,18 @@ Copy the link "https://cors-anywhere.herokuapp.com/"
 ## Temporary Access:
 
 Ensure temporary access to the CORS proxy by visiting the link and confirming access.
-## Start the Application:
+### Start the Application:
 
 Run the application using your preferred method (e.g., npm, yarn):
-bash
-Copy code
+
+```bash
 npm start
-or
-bash
-Copy code
-yarn start
+```
+
+```yarn
+yarnstart
+```
+
 ## Accessing the App:
 
 Open your web browser and navigate to the local development server where the app is running (usually http://localhost:3000).
