@@ -1,4 +1,4 @@
-#DevTools Clone
+# DevTools Clone
 ##Overview
 This project is a clone of developer tools used for inspecting network requests and other functionalities. It's built using React.js with Tailwind CSS for styling.
 
