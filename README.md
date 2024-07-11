@@ -10,9 +10,9 @@ This project is a clone of developer tools used for inspecting network requests 
 ### Running the App
 To run the application, follow these steps:
 
-Copy the Proxy URL:
+### Copy the Proxy URL:
 
-```URL https://cors-anywhere.herokuapp.com/ ```
+URL: [https://cors-anywhere.herokuapp.com/](https://cors-anywhere.herokuapp.com/)
 ### Temporary Access:
 
 Ensure temporary access to the CORS proxy by visiting the link and confirming access.
