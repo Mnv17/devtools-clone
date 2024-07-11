@@ -1,0 +1,36 @@
+/* src/App.css
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+li:hover {
+  background-color: #f0f0f0;
+} */
+
+
+
+.bg-gray-800 {
+  overflow-y: auto; 
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+.bg-gray-800::-webkit-scrollbar {
+  display: none; 
+}
+
