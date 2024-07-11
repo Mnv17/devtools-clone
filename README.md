@@ -12,8 +12,8 @@ To run the application, follow these steps:
 
 ### Copy the Proxy URL:
 
-URL: "https://cors-anywhere.herokuapp.com/"
-Click on "give me temporary access"
+1. URL: "https://cors-anywhere.herokuapp.com/"
+2. Click on "give me temporary access"
 ### Temporary Access:
 
 Ensure temporary access to the CORS proxy by visiting the link and confirming access.
