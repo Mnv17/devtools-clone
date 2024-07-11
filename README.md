@@ -26,7 +26,7 @@ or
 bash
 Copy code
 yarn start
-##Accessing the App:
+## Accessing the App:
 
 Open your web browser and navigate to the local development server where the app is running (usually http://localhost:3000).
 ## Features
