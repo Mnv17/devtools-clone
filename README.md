@@ -12,7 +12,7 @@ To run the application, follow these steps:
 
 ### Copy the Proxy URL:
 
-1. URL: "https://cors-anywhere.herokuapp.com/"
+1. URL: "https://cors-anywhere.herokuapp.com/corsdemo"
 2. Click on "give me temporary access"
 ### Start the Application:
 
