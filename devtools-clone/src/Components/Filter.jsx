@@ -14,59 +14,143 @@ const Filter = () => {
     try {
       const response = await axios.get(`${proxyUrl}${url}`);
       const htmlContent = response.data;
-
+  
       const parser = new DOMParser();
       const doc = parser.parseFromString(htmlContent, "text/html");
-
+  
       const fetchedRequests = [];
-
+  
       doc
         .querySelectorAll("img")
-        .forEach((img) => fetchedRequests.push({ type: "IMG", url: img.src }));
+        .forEach((img) =>
+          fetchedRequests.push({
+            type: "IMG",
+            url: img.src,
+            name: img.src.split("/").pop(), 
+            status: 200,
+            initiator: "IMG",
+            size: "50 KB", 
+            time: "100 ms" 
+          })
+        );
       doc
         .querySelectorAll('link[rel="stylesheet"]')
         .forEach((link) =>
-          fetchedRequests.push({ type: "CSS", url: link.href })
+          fetchedRequests.push({
+            type: "CSS",
+            url: link.href,
+            name: link.href.split("/").pop(),
+            status: 200,
+            initiator: "CSS",
+            size: "30 KB",
+            time: "80 ms"
+          })
         );
       doc
         .querySelectorAll("script")
         .forEach((script) =>
-          fetchedRequests.push({ type: "JS", url: script.src })
+          fetchedRequests.push({
+            type: "JS",
+            url: script.src,
+            name: script.src.split("/").pop(),
+            status: 200,
+            initiator: "JS",
+            size: "70 KB",
+            time: "150 ms"
+          })
         );
       doc
         .querySelectorAll("video, audio")
         .forEach((media) =>
-          fetchedRequests.push({ type: "MEDIA", url: media.src })
+          fetchedRequests.push({
+            type: "MEDIA",
+            url: media.src,
+            name: media.src.split("/").pop(),
+            status: 200,
+            initiator: "MEDIA",
+            size: "1000 KB",
+            time: "200 ms"
+          })
         );
       doc
         .querySelectorAll("iframe")
         .forEach((iframe) =>
-          fetchedRequests.push({ type: "DOC", url: iframe.src })
+          fetchedRequests.push({
+            type: "DOC",
+            url: iframe.src,
+            name: iframe.src.split("/").pop(),
+            status: 200,
+            initiator: "DOC",
+            size: "300 KB",
+            time: "250 ms"
+          })
         );
       doc
         .querySelectorAll('link[rel="manifest"]')
         .forEach((manifest) =>
-          fetchedRequests.push({ type: "Manifest", url: manifest.href })
+          fetchedRequests.push({
+            type: "Manifest",
+            url: manifest.href,
+            name: manifest.href.split("/").pop(),
+            status: 200,
+            initiator: "Manifest",
+            size: "10 KB",
+            time: "30 ms"
+          })
         );
       doc
         .querySelectorAll('link[rel="font"]')
         .forEach((font) =>
-          fetchedRequests.push({ type: "Font", url: font.href })
+          fetchedRequests.push({
+            type: "Font",
+            url: font.href,
+            name: font.href.split("/").pop(),
+            status: 200,
+            initiator: "Font",
+            size: "40 KB",
+            time: "70 ms"
+          })
         );
       doc
         .querySelectorAll('link[rel="preload"]')
         .forEach((preload) =>
-          fetchedRequests.push({ type: "Other", url: preload.href })
+          fetchedRequests.push({
+            type: "Other",
+            url: preload.href,
+            name: preload.href.split("/").pop(),
+            status: 200,
+            initiator: "Preload",
+            size: "20 KB",
+            time: "50 ms"
+          })
         );
       doc
         .querySelectorAll('link[rel="stylesheet"][as="fetch"]')
         .forEach((fetch) =>
-          fetchedRequests.push({ type: "Fetch/XHR", url: fetch.href })
+          fetchedRequests.push({
+            type: "Fetch/XHR",
+            url: fetch.href,
+            name: fetch.href.split("/").pop(),
+            status: 200,
+            initiator: "Fetch/XHR",
+            size: "25 KB",
+            time: "60 ms"
+          })
         );
       doc
         .querySelectorAll('link[rel="stylesheet"][as="websocket"]')
-        .forEach((ws) => fetchedRequests.push({ type: "WS", url: ws.href }));
-
+        .forEach((ws) =>
+          fetchedRequests.push({
+            type: "WS",
+            url: ws.href,
+            name: ws.href.split("/").pop(),
+            status: 200,
+            initiator: "WS",
+            size: "15 KB",
+            time: "40 ms"
+          })
+        );
+  
       setAllRequests(fetchedRequests);
       dispatch({ type: "ADD_REQUESTS", payload: fetchedRequests });
     } catch (error) {
@@ -78,6 +162,7 @@ const Filter = () => {
       setError(error.message);
     }
   };
+  
 
   const handleFilterClick = (filterType) => {
     setActiveFilter(filterType);
@@ -102,27 +187,26 @@ const Filter = () => {
   return (
     <div className="flex flex-col bg-gray-800 p-4 rounded mb-4 w-full mx-auto">
       <div className="flex gap-5 py-2">
-      <svg
-  xmlns="http://www.w3.org/2000/svg"
-  fill="none"
-  viewBox="0 0 24 24"
-  strokeWidth="1.5"
-  stroke="red"
-  className="size-6"
->
-  <path
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-  />
-  <path
-  fill="red"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    d="M9 9.563C9 9.252 9.252 9 9.563 9h4.874c.311 0 .563.252.563.563v4.874c0 .311-.252.563-.563.563H9.564A.562.562 0 0 1 9 14.437V9.564Z"
-  />
-</svg>
-
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="red"
+          className="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+          <path
+            fill="red"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 9.563C9 9.252 9.252 9 9.563 9h4.874c.311 0 .563.252.563.563v4.874c0 .311-.252.563-.563.563H9.564A.562.562 0 0 1 9 14.437V9.564Z"
+          />
+        </svg>
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -342,7 +426,7 @@ const Filter = () => {
       )}
       <div className="text-white mb-2 w-full align-middle ">
         <div className="flex flex-wrap gap-2">
-          <div className="flex gap-4 flex-wrap mb-4 ">
+          <div className="flex gap-2 flex-wrap mb-4 ">
             {[
               "All",
               "Fetch/XHR",
@@ -350,7 +434,7 @@ const Filter = () => {
               "CSS",
               "JS",
               "Font",
-              "Img",
+              "IMG",
               "Media",
               "Menifest",
               "WS",

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { NetworkProvider } from './Context/NetworkContext';
 import RequestMonitor from './Components/RequestMonitor';
 import RequestDetails from './Components/RequestDetails';
 import Filter from './Components/Filter';
@@ -13,7 +12,6 @@ const App = () => {
   };
 
   return (
-    <NetworkProvider>
       <div className="min-h-screen bg-gray-800 text-gray-200 flex flex-col items-center p-4">
         <h1 className="text-3xl text-blue-500 mb-4">DevTools Clone</h1>
         <Filter />
@@ -28,7 +26,7 @@ const App = () => {
           )}
         </div>
       </div>
-    </NetworkProvider>
+  
   );
 };
 
