@@ -34,3 +34,76 @@ li:hover {
   display: none; 
 }
 
+
+
+.no-activity-message-container {
+  color: #fff;
+  text-align: center;
+}
+
+.no-activity-message, .no-activity-suggestion, .learn-more-link {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.no-activity-message {
+  font-size: 16px;
+  padding: 10px;
+}
+
+.no-activity-suggestion {
+  font-size: 14px;
+}
+
+.no-activity-suggestion kbd {
+  background-color: #444;
+  color: #fff;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.learn-more-link {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+.learn-more-link:hover {
+  text-decoration: underline;
+}
+
+.request-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #444;
+}
+
+.request-table-header th {
+  background-color: #292929;
+  color: #fff;
+  padding: 8px 16px;
+  text-align: left;
+  font-weight: normal;
+  border: 1px solid #444;
+}
+
+.request-table-body td {
+  background-color: #1e1e1e;
+  color: #fff;
+  padding: 8px 16px;
+  border: 1px solid #444;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.request-row:hover {
+  background-color: #333;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

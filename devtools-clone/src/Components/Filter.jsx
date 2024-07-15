@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNetworkContext } from "../Context/NetworkContext";
+import "../App.css";
 
 const Filter = () => {
   const { dispatch } = useNetworkContext();
@@ -14,116 +15,100 @@ const Filter = () => {
     try {
       const response = await axios.get(`${proxyUrl}${url}`);
       const htmlContent = response.data;
-  
+
       const parser = new DOMParser();
       const doc = parser.parseFromString(htmlContent, "text/html");
-  
+
       const fetchedRequests = [];
-  
-      doc
-        .querySelectorAll("img")
-        .forEach((img) =>
-          fetchedRequests.push({
-            type: "IMG",
-            url: img.src,
-            name: img.src.split("/").pop(), 
-            status: 200,
-            initiator: "IMG",
-            size: "50 KB", 
-            time: "100 ms" 
-          })
-        );
-      doc
-        .querySelectorAll('link[rel="stylesheet"]')
-        .forEach((link) =>
-          fetchedRequests.push({
-            type: "CSS",
-            url: link.href,
-            name: link.href.split("/").pop(),
-            status: 200,
-            initiator: "CSS",
-            size: "30 KB",
-            time: "80 ms"
-          })
-        );
-      doc
-        .querySelectorAll("script")
-        .forEach((script) =>
-          fetchedRequests.push({
-            type: "JS",
-            url: script.src,
-            name: script.src.split("/").pop(),
-            status: 200,
-            initiator: "JS",
-            size: "70 KB",
-            time: "150 ms"
-          })
-        );
-      doc
-        .querySelectorAll("video, audio")
-        .forEach((media) =>
-          fetchedRequests.push({
-            type: "MEDIA",
-            url: media.src,
-            name: media.src.split("/").pop(),
-            status: 200,
-            initiator: "MEDIA",
-            size: "1000 KB",
-            time: "200 ms"
-          })
-        );
-      doc
-        .querySelectorAll("iframe")
-        .forEach((iframe) =>
-          fetchedRequests.push({
-            type: "DOC",
-            url: iframe.src,
-            name: iframe.src.split("/").pop(),
-            status: 200,
-            initiator: "DOC",
-            size: "300 KB",
-            time: "250 ms"
-          })
-        );
-      doc
-        .querySelectorAll('link[rel="manifest"]')
-        .forEach((manifest) =>
-          fetchedRequests.push({
-            type: "Manifest",
-            url: manifest.href,
-            name: manifest.href.split("/").pop(),
-            status: 200,
-            initiator: "Manifest",
-            size: "10 KB",
-            time: "30 ms"
-          })
-        );
-      doc
-        .querySelectorAll('link[rel="font"]')
-        .forEach((font) =>
-          fetchedRequests.push({
-            type: "Font",
-            url: font.href,
-            name: font.href.split("/").pop(),
-            status: 200,
-            initiator: "Font",
-            size: "40 KB",
-            time: "70 ms"
-          })
-        );
-      doc
-        .querySelectorAll('link[rel="preload"]')
-        .forEach((preload) =>
-          fetchedRequests.push({
-            type: "Other",
-            url: preload.href,
-            name: preload.href.split("/").pop(),
-            status: 200,
-            initiator: "Preload",
-            size: "20 KB",
-            time: "50 ms"
-          })
-        );
+
+      doc.querySelectorAll("img").forEach((img) =>
+        fetchedRequests.push({
+          type: "IMG",
+          url: img.src,
+          name: img.src.split("/").pop(),
+          status: 200,
+          initiator: "IMG",
+          size: "50 KB",
+          time: "100 ms",
+        })
+      );
+      doc.querySelectorAll('link[rel="stylesheet"]').forEach((link) =>
+        fetchedRequests.push({
+          type: "CSS",
+          url: link.href,
+          name: link.href.split("/").pop(),
+          status: 200,
+          initiator: "CSS",
+          size: "30 KB",
+          time: "80 ms",
+        })
+      );
+      doc.querySelectorAll("script").forEach((script) =>
+        fetchedRequests.push({
+          type: "JS",
+          url: script.src,
+          name: script.src.split("/").pop(),
+          status: 200,
+          initiator: "JS",
+          size: "70 KB",
+          time: "150 ms",
+        })
+      );
+      doc.querySelectorAll("video, audio").forEach((media) =>
+        fetchedRequests.push({
+          type: "MEDIA",
+          url: media.src,
+          name: media.src.split("/").pop(),
+          status: 200,
+          initiator: "MEDIA",
+          size: "1000 KB",
+          time: "200 ms",
+        })
+      );
+      doc.querySelectorAll("iframe").forEach((iframe) =>
+        fetchedRequests.push({
+          type: "DOC",
+          url: iframe.src,
+          name: iframe.src.split("/").pop(),
+          status: 200,
+          initiator: "DOC",
+          size: "300 KB",
+          time: "250 ms",
+        })
+      );
+      doc.querySelectorAll('link[rel="manifest"]').forEach((manifest) =>
+        fetchedRequests.push({
+          type: "Manifest",
+          url: manifest.href,
+          name: manifest.href.split("/").pop(),
+          status: 200,
+          initiator: "Manifest",
+          size: "10 KB",
+          time: "30 ms",
+        })
+      );
+      doc.querySelectorAll('link[rel="font"]').forEach((font) =>
+        fetchedRequests.push({
+          type: "Font",
+          url: font.href,
+          name: font.href.split("/").pop(),
+          status: 200,
+          initiator: "Font",
+          size: "40 KB",
+          time: "70 ms",
+        })
+      );
+      doc.querySelectorAll('link[rel="preload"]').forEach((preload) =>
+        fetchedRequests.push({
+          type: "Other",
+          url: preload.href,
+          name: preload.href.split("/").pop(),
+          status: 200,
+          initiator: "Preload",
+          size: "20 KB",
+          time: "50 ms",
+        })
+      );
       doc
         .querySelectorAll('link[rel="stylesheet"][as="fetch"]')
         .forEach((fetch) =>
@@ -134,7 +119,7 @@ const Filter = () => {
             status: 200,
             initiator: "Fetch/XHR",
             size: "25 KB",
-            time: "60 ms"
+            time: "60 ms",
           })
         );
       doc
@@ -147,10 +132,10 @@ const Filter = () => {
             status: 200,
             initiator: "WS",
             size: "15 KB",
-            time: "40 ms"
+            time: "40 ms",
           })
         );
-  
+
       setAllRequests(fetchedRequests);
       dispatch({ type: "ADD_REQUESTS", payload: fetchedRequests });
     } catch (error) {
@@ -162,7 +147,6 @@ const Filter = () => {
       setError(error.message);
     }
   };
-  
 
   const handleFilterClick = (filterType) => {
     setActiveFilter(filterType);
@@ -186,6 +170,17 @@ const Filter = () => {
 
   return (
     <div className="flex flex-col bg-gray-800 p-4 rounded mb-4 w-full mx-auto">
+      <div>
+        <input
+          type="text"
+          placeholder="Put link here"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          onKeyDown={handleKeyDown}
+          className="px-2 py-0.5 bg-gray-700 text-white border border-gray-600 rounded mb-2 mr-2"
+        />
+      </div>
+
       <div className="flex gap-5 py-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -278,7 +273,7 @@ const Filter = () => {
         <div className="flex items-center ml-4">
           <input
             type="checkbox"
-            className="mr-2 h-5 w-5 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
+            className="mr-2 h-4 w-4 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
           />
           <span className="text-white">Preserve log</span>
         </div>
@@ -297,7 +292,7 @@ const Filter = () => {
         <div className="flex items-center ml-4">
           <input
             type="checkbox"
-            className="mr-2 h-5 w-5 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
+            className="mr-2 h-4 w-4 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
           />{" "}
           <span className="text-white">Disable cache</span>
         </div>
@@ -379,16 +374,13 @@ const Filter = () => {
         <input
           type="text"
           placeholder="Filter"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          onKeyDown={handleKeyDown}
           className="px-2 py-0.5 bg-gray-700 text-white border border-gray-600 rounded mb-2 mr-2"
         />
 
         <div className="flex items-center mr-2">
           <input
             type="checkbox"
-            className="mr-1 h-5 w-5 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
+            className="mr-1 h-4 w-4 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
           />{" "}
           <span className="text-white">Invert</span>
         </div>
@@ -407,7 +399,7 @@ const Filter = () => {
         <div className="flex items-center mr-2">
           <input
             type="checkbox"
-            className="mr-1 h-5 w-5 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
+            className="mr-1 h-4 w-4 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
           />{" "}
           <span className="text-white">Hide data URLs</span>
         </div>
@@ -415,7 +407,7 @@ const Filter = () => {
         <div className="flex items-center">
           <input
             type="checkbox"
-            className="mr-1 h-5 w-5 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
+            className="mr-1 h-4 w-4 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
           />{" "}
           <span className="text-white">Hide extension URLs</span>
         </div>
@@ -426,7 +418,7 @@ const Filter = () => {
       )}
       <div className="text-white mb-2 w-full align-middle ">
         <div className="flex flex-wrap gap-2">
-          <div className="flex gap-2 flex-wrap mb-4 ">
+          <div className="flex gap-2 flex-wrap mb-4 my-3 ">
             {[
               "All",
               "Fetch/XHR",
@@ -454,32 +446,31 @@ const Filter = () => {
               </button>
             ))}
           </div>
-          <div className="flex  ">
-            <input
-              type="checkbox"
-              className="mr-2 h-5 w-5 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
-            />{" "}
-            <span className="text-white">Blocked response cookies</span>
-          </div>
-          <div className="flex  ml-4">
-            <input
-              type="checkbox"
-              className="mr-2 h-5 w-5 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
-            />{" "}
-            <span className="text-white">Blocked response</span>
-          </div>
-          <div className="flex ml-4">
-            <input
-              type="checkbox"
-              className="mr-2 h-5 w-5 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
-            />{" "}
-            <span className="text-white">3rd-party requests</span>
-          </div>
-        </div>
-      </div>
+          <div className="flex items-center space-x-4">
+  <div className="flex items-center align-middle ">
+    <input
+      type="checkbox"
+      className="mr-2 h-4 w-4 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
+    />
+    <span className="text-white">Blocked response cookies</span>
+  </div>
+  <div className="flex items-center">
+    <input
+      type="checkbox"
+      className="mr-2 h-4 w-4 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
+    />
+    <span className="text-white">Blocked response</span>
+  </div>
+  <div className="flex items-center">
+    <input
+      type="checkbox"
+      className="mr-2 h-4 w-4 border-gray-400 rounded text-gray-400 focus:ring-gray-400"
+    />
+    <span className="text-white">3rd-party requests</span>
+  </div>
+</div>
 
-      <div className="mt-4 text-gray-400 text-sm">
-        Recording network activity...
+        </div>
       </div>
     </div>
   );
